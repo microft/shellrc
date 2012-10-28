@@ -1,0 +1,14 @@
+[ -z "$PS1" ] && return
+
+ACTIVE_SHRC=$ACTIVE_SHRC:'GNOME'   
+export ACTIVE_SHRC
+
+launch-checkgmail () {
+  for i in ~/.checkgmail/prefs*.xml ;
+  do
+    checkgmail -profile=$(expr $i : ".*prefs-\(.*\).xml$") &
+  done
+}
+
+#alias open='gnome-open'
+alias open='xdg-open'

@@ -1,0 +1,67 @@
+[ -z "$PS1" ] && return
+
+ACTIVE_SHRC=$ACTIVE_SHRC:'COMMON'
+export ACTIVE_SHRC
+
+active_shrc () {
+    echo "$ACTIVE_SHRC" | sed 's/:/ /g'
+}
+
+tunnel () {
+    SSH=`which ssh`
+    while : 
+    do
+        $SSH -gvCND 12345 "$@";
+        sleep 30;
+    done
+}
+
+rtunnel () {
+    SSH=`which ssh`
+    while :
+    do
+        $SSH -vCNR 19999:localhost:22 "$@";
+        sleep 30;
+    done
+}
+
+AddPath()
+{
+    AppendPath $@
+}
+
+AppendPath()
+{
+  _folder=$1
+  echo " $PATH " | sed 's/:/ /g' | grep " $_folder " > /dev/null
+  if [ $? -ne 0 ] && [ -d $_folder ] && [ -x $_folder ]; then
+    export PATH=$PATH:$_folder
+    #echo $PATH
+  fi
+}
+
+PrependPath()
+{
+  _folder=$1
+  _newpath=`echo "$PATH" | sed "s!$_folder!!g" | sed 's!::!:!g' `
+  if [ -d $_folder ] && [ -x $_folder ]; then
+    export PATH=$_folder:$_newpath
+    #echo $PATH
+  fi
+}
+
+RemovePath()
+{
+  _folder=$1
+  _newpath=`echo "$PATH" | sed "s!$_folder!!g" | sed 's/::/:/g' `
+  export PATH=$_newpath
+  echo $PATH
+}
+
+
+# GET HTTP METHODS IN BASH
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+    alias "$method"="lwp-request -m '$method'"
+done
+
+alias webserver='python -m SimpleHTTPServer'

@@ -1,0 +1,25 @@
+if [ -n "`echo $ZSH_VERSION`" ]; then
+   # assume Zsh
+   SHSUFFIX=".zsh"
+elif [ -n "`echo $BASH_VERSION`" ]; then
+   # assume Bash
+   SHSUFFIX=".bash"
+else
+   # asume something else
+   SHSUFFIX=""
+fi
+
+#echo $SHSUFFIX;
+
+for b in ${SHRC[@]}; do
+    if [ -f $SHRCDIR$b$SHSUFFIX ]; then
+        source $SHRCDIR$b$SHSUFFIX
+        #echo $SHRCDIR$b$SHSUFFIX
+    elif [ -f $SHRCDIR$b ]; then
+        source $SHRCDIR$b
+        #echo $SHRCDIR$b
+    else
+        echo "$b not found in $SHRCDIR"
+    fi  
+done
+

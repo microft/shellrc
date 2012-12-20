@@ -1,0 +1,5 @@
+
+# All the dig info
+function digga() {                                   
+    dig +nocmd "$@" any +multiline +noall +answer
+}

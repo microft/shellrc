@@ -12,6 +12,7 @@ tunnel () {
     while : 
     do
         $SSH -gvCND 12345 "$@";
+	clear;
         sleep 30;
     done
 }

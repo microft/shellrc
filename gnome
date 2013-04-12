@@ -1,5 +1,4 @@
 [ -z "$PS1" ] && return
-
 ACTIVE_SHRC=$ACTIVE_SHRC:'GNOME'   
 export ACTIVE_SHRC
 

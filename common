@@ -62,7 +62,8 @@ RemovePath()
 
 # GET HTTP METHODS IN BASH
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-    alias "$method"="lwp-request -m '$method'"
+    alias "$method"="lwp-request -U -e -S -m '$method'"
 done
 
 alias webserver='python -m SimpleHTTPServer'
+alias git-chop='git branch -D $(git branch --merged | grep -v master | grep -v \*)'

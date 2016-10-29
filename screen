@@ -9,7 +9,7 @@ if [ ! -z "$STY" ]; then
     alias s='screen'
     # Lauch all ssh in new screens
     #alias ssh='screen -t ssh ssh'
-    ssh() {
+    ssht() {
         screen -t $1 ssh $@
     }
 fi

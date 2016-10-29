@@ -12,3 +12,4 @@ bindkey ';5D' emacs-backward-word
 #bindkey '5C' emacs-forward-word
 bindkey ';5C' emacs-forward-word
 
+alias ack='ack-grep -r'

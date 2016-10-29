@@ -42,9 +42,9 @@ fi
 if [ -x /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then 
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
     export LESS=$LESS' -R '
-fi 
-
-export LESS=$LESS' -X'
+else
+    export LESS='-erX'
+fi
  
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"

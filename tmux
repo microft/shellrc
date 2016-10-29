@@ -8,7 +8,7 @@ if [ ! -z "$TMUX" ]; then
     # create a shortcut for 'tmux new-window'
     alias t='tmux new-window'
     # Lauch all ssh in new screens
-    ssh() {
+    ssht() {
         COMMAND=$( echo "ssh $@" )
         tmux new-window -n ssh "$COMMAND"
     }
